@@ -5,8 +5,18 @@ using System.Linq;
 
 namespace Trivia_testv1
 {
+    public static class TriviaExtension
+    {
+        public static bool In<T>(this T t, params T[] values)
+        { return values.Contains(t); }
+    }
+
+
     public class Game
     {
+ 
+        
+
         public static List<string> players = new List<string>();
         int[] places = new int[6];
         int[] purses = new int[6];
@@ -115,16 +125,14 @@ namespace Trivia_testv1
 
         private String currentCategory()
         {
-            if (places[currentPlayer] == 0) return "Pop";
-            if (places[currentPlayer] == 4) return "Pop";
-            if (places[currentPlayer] == 8) return "Pop";
-            if (places[currentPlayer] == 1) return "Science";
-            if (places[currentPlayer] == 5) return "Science";
-            if (places[currentPlayer] == 9) return "Science";
-            if (places[currentPlayer] == 2) return "Sports";
-            if (places[currentPlayer] == 6) return "Sports";
-            if (places[currentPlayer] == 10) return "Sports";
-            return "Rock";
+            if (places[currentPlayer].In(0, 4, 8))
+                return "Pop";
+            else if (places[currentPlayer].In(1, 5, 9))
+                return "Science";
+            else if (places[currentPlayer].In(2, 6, 10))
+                return "Sports";
+            else
+                return "Rock";
         }
 
         public bool wasCorrectlyAnswered()

@@ -31,6 +31,7 @@ namespace Trivia_testv1
                 }
 
             } while (notAWinner);
+            Console.ReadLine();
         }
 
 
